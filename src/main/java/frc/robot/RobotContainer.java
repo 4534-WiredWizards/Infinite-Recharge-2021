@@ -82,4 +82,11 @@ public class RobotContainer {
   public Command getAutonomousCommand() {
     return new BarrelRunTest(); //.withTimeout(20);
   }
+
+  //define test mode 
+   public Command getTestCommand() {
+     return (Command) new CodeSim();
+
+   }
+
 }
