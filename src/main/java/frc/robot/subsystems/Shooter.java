@@ -7,14 +7,10 @@
 
 package frc.robot.subsystems;
 
-//import com.ctre.phoenix.motorcontrol.ControlMode;
-//import com.revrobotics.CANSparkMax;
-//import com.revrobotics.CANEncoder;
-//import com.revrobotics.CANSparkMaxLowLevel.MotorType;
-import net.thefletcher.revrobotics.CANSparkMax;
-import net.thefletcher.revrobotics.CANEncoder;
-//import net.thefletcher.revrobotics.CANSparkMaxLowLevel;
-import net.thefletcher.revrobotics.enums.MotorType;
+import com.ctre.phoenix.motorcontrol.ControlMode;
+import com.revrobotics.CANSparkMax;
+import com.revrobotics.CANEncoder;
+import com.revrobotics.CANSparkMaxLowLevel.MotorType;
 import com.ctre.phoenix.motorcontrol.can.WPI_VictorSPX;
 import edu.wpi.first.wpilibj2.command.SubsystemBase;
 import edu.wpi.first.wpiutil.math.MathUtil;
@@ -49,7 +45,7 @@ public class Shooter extends SubsystemBase {
   }
 
   public void setShooterSpeed(double speed) {
-//    Shoot1.set(ControlMode.PercentOutput, speed * 1);
+    Shoot1.set(ControlMode.PercentOutput, speed * 1);
   }
   public void setTurretSpeed(double speed) {
     Turret.set(MathUtil.clamp(-speed * 0.1, -0.1, 0.1));
