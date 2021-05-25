@@ -35,10 +35,10 @@ public class RobotContainer {
   public static Climb ClimbT = new Climb();
   public static Shooter ShooterT = new Shooter();
   //public static Lights LightsT = new Lights();
-
   public static XboxController m_driverController = new XboxController(0);
- 
   public static Joystick m_joystick = new Joystick(1);
+  public static ChooseAutoTest m_ChooseAutoTest = new ChooseAutoTest();
+
 
   /**
    * The container for the robot.  Contains subsystems, OI devices, and commands.
@@ -80,7 +80,7 @@ public class RobotContainer {
    * @return the command to run in autonomous
    */
   public Command getAutonomousCommand() {
-    return new ChooseAutoTest(); //.withTimeout(20);
+    return new ChooseAutoTest().pathChooser.getSelected(); //.withTimeout(20);
   }
 
   //define test mode 

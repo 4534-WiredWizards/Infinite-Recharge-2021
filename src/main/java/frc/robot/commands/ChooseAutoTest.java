@@ -19,7 +19,7 @@ public class ChooseAutoTest extends CommandBase {
         private final Command m_SlalomPath = new AutoTest2();
         private final Command m_BouncePath = new AutoTest3();
 
-        SendableChooser<Command> pathChooser = new SendableChooser<Command>();
+        public SendableChooser<Command> pathChooser = new SendableChooser<Command>();
 
     public ChooseAutoTest(){
         pathChooser.setDefaultOption("Barrel Run", m_BarrelRunTest);
