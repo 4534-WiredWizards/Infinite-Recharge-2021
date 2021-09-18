@@ -80,7 +80,7 @@ public class RobotContainer {
    * @return the command to run in autonomous
    */
   public Command getAutonomousCommand() {
-    return new ChooseAuto().autoChooser.getSelected(); // .withTimeout(20);
+    return new SixBallSimple(); // .withTimeout(20);
   }
 
   //define test mode 
