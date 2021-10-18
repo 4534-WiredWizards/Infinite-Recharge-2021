@@ -13,8 +13,8 @@ import edu.wpi.first.wpilibj2.command.CommandScheduler;
 // import edu.wpi.first.wpilibj.TimedRobot;
 // import edu.wpi.first.wpilibj.I2C;
 // import edu.wpi.first.wpilibj.livewindow.LiveWindow;
-// import edu.wpi.first.wpilibj.smartdashboard.SendableChooser;
-// import edu.wpi.first.wpilibj.smartdashboard.SmartDashboard;
+//import edu.wpi.first.wpilibj.smartdashboard.SendableChooser;
+//import edu.wpi.first.wpilibj.smartdashboard.SmartDashboard;
 // import frc.robot.commands.*;
 // import edu.wpi.first.cameraserver.CameraServer;
 // import edu.wpi.first.networktables.NetworkTable;
@@ -27,6 +27,9 @@ import edu.wpi.first.wpilibj2.command.CommandScheduler;
 // import edu.wpi.first.wpilibj.SerialPort;
 // import edu.wpi.first.wpilibj.util.Color;
 // import com.revrobotics.ColorSensorV3;
+
+import edu.wpi.first.wpilibj.shuffleboard.Shuffleboard;
+import edu.wpi.first.wpilibj.shuffleboard.BuiltInWidgets;
 
 /**
  * The VM is configured to automatically run this class, and to call the functions corresponding to
@@ -47,6 +50,11 @@ public class Robot extends TimedRobot {
     // Instantiate our RobotContainer.  This will perform all our button bindings, and put our
     // autonomous chooser on the dashboard.
     m_robotContainer = new RobotContainer();
+
+    Shuffleboard.getTab("SmartDashboard")
+    .add("Intake Speed", 1)
+    .withWidget(BuiltInWidgets.kNumberSlider) // specify the widget here
+    .getEntry();
   }
 
   /**
