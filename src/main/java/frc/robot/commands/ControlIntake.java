@@ -36,7 +36,7 @@ public class ControlIntake extends CommandBase {
   @Override
   public void execute() {
     if(frc.robot.RobotContainer.m_joystick.getRawButton(2)) {
-      frc.robot.RobotContainer.IntakeT.setMotor(-0.6);
+      frc.robot.RobotContainer.IntakeT.setMotor(-0.8); //-0.6
     }
     else {
       if(frc.robot.RobotContainer.m_joystick.getRawButton(3)) {
@@ -53,7 +53,7 @@ public class ControlIntake extends CommandBase {
       prevButton6 = false;
     }
     if(frc.robot.RobotContainer.m_joystick.getRawButton(1)) {
-      frc.robot.RobotContainer.IndexerT.setMotor(-0.8);
+      frc.robot.RobotContainer.IndexerT.setMotor(-0.4); //-0.8
     }
     else if(frc.robot.RobotContainer.m_joystick.getRawButton(8)){
       frc.robot.RobotContainer.IndexerT.setMotor(0.8);
