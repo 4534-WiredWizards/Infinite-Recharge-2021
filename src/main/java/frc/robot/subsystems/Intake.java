@@ -26,7 +26,7 @@ public class Intake extends SubsystemBase {
     piston = new Solenoid(0, 1);
     addChild("piston", piston);
     motor = new CANSparkMax(16, MotorType.kBrushless);
-  }
+  } 
 
   @Override
   public void periodic() {

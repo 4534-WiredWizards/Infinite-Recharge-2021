@@ -7,6 +7,9 @@
 
 package frc.robot.commands;
 
+import edu.wpi.first.networktables.NetworkTableEntry;
+import edu.wpi.first.wpilibj.shuffleboard.Shuffleboard;
+import edu.wpi.first.wpilibj.shuffleboard.ShuffleboardTab;
 import edu.wpi.first.wpilibj2.command.CommandBase;
 
 /**
@@ -26,6 +29,17 @@ public class ControlIntake extends CommandBase {
     addRequirements(frc.robot.RobotContainer.IntakeT);
     addRequirements(frc.robot.RobotContainer.IndexerT);
   }
+  /*private Shuffleboard.getTab("SmartDashboard")
+  .add("Intake Speed", 1)
+  .withWidget(BuiltInWidgets.kNumberSlider) // specify the widget here
+  .withProperties(Map.of("min", 0, "max", 1))
+  .getEntry();*/
+  private ShuffleboardTab tab = Shuffleboard.getTab("Drive");
+  private NetworkTableEntry maxSpeed =
+      tab.add("Max Speed", 1)
+         .getEntry();
+
+  private final NetworkTableEntry intakeEntry = tab.add("intake speed", 0).getEntry();
 
   // Called when the command is initially scheduled.
   @Override
@@ -35,15 +49,20 @@ public class ControlIntake extends CommandBase {
   // Called every time the scheduler runs while the command is scheduled.
   @Override
   public void execute() {
+    double echointake = 0.0;
+    double maxintake = maxSpeed.getDouble(0.8);
     if(frc.robot.RobotContainer.m_joystick.getRawButton(2)) {
-      frc.robot.RobotContainer.IntakeT.setMotor(-0.8); //-0.6
+      echointake=-1.0*maxintake;
+      frc.robot.RobotContainer.IntakeT.setMotor(echointake); //-0.6
     }
     else {
       if(frc.robot.RobotContainer.m_joystick.getRawButton(3)) {
-        frc.robot.RobotContainer.IntakeT.setMotor(0.4);
+        echointake=0.4;
+        frc.robot.RobotContainer.IntakeT.setMotor(echointake);
       }
       else {
-        frc.robot.RobotContainer.IntakeT.setMotor(0);
+        echointake=0;
+        frc.robot.RobotContainer.IntakeT.setMotor(echointake);
       }
     }
     //frc.robot.RobotContainer.IntakeT.setPiston(frc.robot.RobotContainer.m_joystick.getRawButton(6));
@@ -56,7 +75,7 @@ public class ControlIntake extends CommandBase {
       frc.robot.RobotContainer.IndexerT.setMotor(-0.4); //-0.8
     }
     else if(frc.robot.RobotContainer.m_joystick.getRawButton(8)){
-      frc.robot.RobotContainer.IndexerT.setMotor(0.8);
+      frc.robot.RobotContainer.IndexerT.setMotor(maxintake);
     }
     else if(frc.robot.RobotContainer.m_joystick.getRawButton(2) &&frc.robot.RobotContainer.IndexerT.ballAtEnd()){
       frc.robot.RobotContainer.IndexerT.setMotor(-0.9);
@@ -64,6 +83,7 @@ public class ControlIntake extends CommandBase {
     else{
       frc.robot.RobotContainer.IndexerT.setMotor(0);
     }
+    intakeEntry.setDouble(echointake);
   }
 
   // Called once the command ends or is interrupted.
