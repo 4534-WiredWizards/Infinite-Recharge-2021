@@ -8,6 +8,7 @@
 package frc.robot.commands;
 
 import edu.wpi.first.networktables.NetworkTableEntry;
+import edu.wpi.first.wpilibj.shuffleboard.BuiltInWidgets;
 import edu.wpi.first.wpilibj.shuffleboard.Shuffleboard;
 import edu.wpi.first.wpilibj.shuffleboard.ShuffleboardTab;
 import edu.wpi.first.wpilibj2.command.CommandBase;
@@ -36,8 +37,7 @@ public class ControlIntake extends CommandBase {
   .getEntry();*/
   private ShuffleboardTab tab = Shuffleboard.getTab("Drive");
   private NetworkTableEntry maxSpeed =
-      tab.add("Max Speed", 1)
-         .getEntry();
+      tab.add("Max Speed", 1).withWidget(BuiltInWidgets.kNumberSlider).getEntry();
 
   private final NetworkTableEntry intakeEntry = tab.add("intake speed", 0).getEntry();
 
@@ -51,6 +51,13 @@ public class ControlIntake extends CommandBase {
   public void execute() {
     double echointake = 0.0;
     double maxintake = maxSpeed.getDouble(0.8);
+    if (maxintake<0.0){
+      maxintake=0.0;
+    }
+    else if(maxintake>1.0){
+      maxintake=1.0;
+    }
+    
     if(frc.robot.RobotContainer.m_joystick.getRawButton(2)) {
       echointake=-1.0*maxintake;
       frc.robot.RobotContainer.IntakeT.setMotor(echointake); //-0.6
